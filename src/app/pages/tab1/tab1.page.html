@@ -1,0 +1,34 @@
+<ion-header no-order [translucent]="true">
+    <ion-toolbar color="tertiary">
+        <ion-title>
+            PLE-Noticias (<small>{{this.paisSelecc}}</small>)
+        </ion-title>
+        <!-- <ion-label>{{this.paisSelecc}}</ion-label> -->
+        <ion-button slot="end" (click)="setting()">
+            <ion-icon slot="icon-only" name="globe-outline"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+
+    <ion-slides [options]="slideOpts" *ngIf="noticias.length === 0">
+        <ion-slide>
+            <ion-label>No hay Noticias para el país seleccionado</ion-label>
+        </ion-slide>
+    </ion-slides>
+
+    <app-noticias [noticias]="noticias" *ngIf="noticias.length > 0"></app-noticias>
+
+    <ion-infinite-scroll threshold="25%" position="bottom" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content color="primary" loadingSpinner="bubbles" loadingText="Cargando...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
+<ion-footer mode="ios" no-border transparent>
+    <ion-toolbar color="tertiary" no-border transparent>
+        <ion-title size="small" color="dark" class="fa fa-copyright">
+            <small>©PleSystemSolutions - Pedro López - +58 412-6107011 - Pedrolopeze11@gmail.com </small>
+        </ion-title>
+    </ion-toolbar>
+</ion-footer>

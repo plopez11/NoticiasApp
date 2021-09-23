@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+        <ion-title>Paises (<small>{{this.paisActual}}</small>)</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-searchbar placeholder="Buscar" inputmode="text" (ionChange)="onSearchChange($event)" [debounce]="250">
+    </ion-searchbar>
+</ion-header>
+<ion-content color="dark">
+    <ion-list>
+        <ion-radio-group (ionChange)="paisSelect($event.detail.value)">
+            <ion-item *ngFor="let pais of paises | filtro:textoBuscar:'name'">
+                <ion-label>{{pais.name}}</ion-label>
+                <!-- <ion-radio [value]="pais.alpha2Code" (ionSelect)="paisSelect(pais)"></ion-radio> -->
+                <ion-radio [value]="pais" (ionSelect)="paisSelect(pais)"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </ion-list>
+
+
+    <!-- <ion-list>
+        <ion-item>
+            <ion-label>Paises</ion-label>
+            <ion-select>
+                <ion-select-option *ngFor="let pais of paises" [value]="pais.alpha2Code">{{pais.alpha2Code}} - {{pais.name }}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+    </ion-list> -->
+</ion-content>
